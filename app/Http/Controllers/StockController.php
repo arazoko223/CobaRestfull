@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\StockBarang;
 
 class StockController extends Controller
 {
@@ -14,7 +15,7 @@ class StockController extends Controller
     public function index()
     {
         $stocks = StockBarang::all();
-        return view('index', compact('stocks'));
+        return view('stoock.index', compact('stoock'));
     }
     /**
      * Show the form for creating a new resource.
@@ -23,7 +24,7 @@ class StockController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('stoock.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -50,7 +51,7 @@ class StockController extends Controller
             'ukuran' => $request->get('ukuran')
         ]);
         $stocks->save();
-        return redirect('/stock_barang')->with('success', 'Contact saved!');
+        return redirect('stoock.index')->with('success', 'Contact saved!');
     }
     /**
      * Display the specified resource.
@@ -71,7 +72,7 @@ class StockController extends Controller
     public function edit($id)
     {
         $stocks = StockBarang::find($id);
-        return view('edit', compact('stocks'));
+        return view('stoock.edit', compact('stoock'));
     }
     /**
      * Update the specified resource in storage.
@@ -98,7 +99,7 @@ class StockController extends Controller
         $stocks->warna = $request->get('warna');
         $stocks->ukuran = $request->get('ukuran');
         $stocks->save();
-        return redirect('/stock')->with('success', 'Data updated!');
+        return redirect('stoock.index')->with('success', 'Data updated!');
     }
     /**
      * Remove the specified resource from storage.
@@ -110,6 +111,6 @@ class StockController extends Controller
     {
         $stocks = StockBarang::find($id);
         $stocks->delete();
-        return redirect('/stock')->with('success', 'Data deleted!');
+        return redirect('stoock.index')->with('success', 'Data deleted!');
     }
 }

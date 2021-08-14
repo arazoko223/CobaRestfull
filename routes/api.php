@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('stocks', 'StockController');
+Route::apiResource('stoock', StockController::class);
